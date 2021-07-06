@@ -8,10 +8,20 @@
 </head>
 <body>
     <h1>Battleship</h1>
+    <div id="status-update">Selection Phase - Position your battleships!</div>
+    <button id="change-axis-button">Change Axis</button>
 
     <section id="display-container">
-        <div id="user-container"></div>
-        <div id="computer-container"></div>
+        <div class="grid-container">
+            <h2>Your Grid</h2>
+            <div id="user-container"></div>
+        </div>
+        
+        <div class="grid-container">
+            <h2>Computer's Grid</h2>
+            <div id="computer-container"></div>
+        </div>
+        
     </section>
 
     <button id="reset-button">Reset</button>

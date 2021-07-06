@@ -21,6 +21,7 @@ const gameboard = () =>{
     let ships = new Map();
     
     function placeShip(length, axis, x, y){
+
         //Out of boundary starting
         if((x < 0 || x > 9) || (y < 0 || y > 9)) return false;
 
@@ -103,6 +104,7 @@ const gameboard = () =>{
         placeShip,
         receiveAttack,
         isGameOver,
+        
     }
 
 }

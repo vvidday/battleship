@@ -1,27 +1,54 @@
 import { player } from './player';
 import { gameboard } from './gameboard';
-import { addPlayerListeners, removePlayerListeners, updateColor } from './domhandler';
+import { addPlayerListeners, removePlayerListeners, updateStatus } from './domhandler';
 
 const gameloop = (() => {
     let computergb = null;
     let usergb = null;
     let computer = null;
     let user = null;
+    let selectionstatus = 0;
 
     function startGame(){
         computergb = gameboard();
-        usergb = gameboard();
         computer = player(true, usergb);
         user = player(false, computergb);
         populateGameboard(computergb);
-        populateGameboard(usergb);
         addPlayerListeners();
+        updateStatus("Game on! Choose a square to attack!");
     }
 
+    function startSelection(){
+        usergb = gameboard();
+    }
+
+    function attemptPlace(x, y, axis){
+        console.log(x, y, axis);
+        if(usergb.placeShip(5-selectionstatus, axis, x, y)){
+            selectionstatus += 1;
+            return true;
+        }
+        else{
+            return false;
+        }
+        }
+    
+
     function populateGameboard(gameboard){
-        // gameboard.placeShip(1, 'x', 0, 0);
-        gameboard.placeShip(5, 'y', 0, 0);
-        gameboard.placeShip(3, 'x', 0, 5);
+        let result = null;
+        for(let i = 1; i <= 5; i++){
+            do{
+                let x = Math.floor(Math.random()*10);
+                let y = Math.floor(Math.random()*10);
+                if(Math.random() < 0.5){
+                    result = gameboard.placeShip(i, 'x', x, y);
+                }
+                else{
+                    result = gameboard.placeShip(i, 'y', x, y);
+                }
+            }
+            while(!result)
+        }
     }
 
     function playerAttack(x, y){
@@ -46,7 +73,8 @@ const gameloop = (() => {
 
     function endGame(winner){
         removePlayerListeners();    
-        console.log(winner + " won");
+        if(winner === "computer") updateStatus("You lose! Better luck next time.")
+        else updateStatus("Congratulations, you win!");
     }
 
     function resetGame(){
@@ -54,13 +82,16 @@ const gameloop = (() => {
         usergb = null;
         computer = null;
         user = null;
-        startGame();
+        selectionstatus = 0;
+        startSelection();
     }
 
     return {
         playerAttack,
         startGame,
         resetGame,
+        attemptPlace,
+        startSelection,
     };
 
 })();
