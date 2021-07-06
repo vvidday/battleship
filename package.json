@@ -1,0 +1,28 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "Battleship project from The Odin Project (Javascript path)",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vvidday/battleship.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vvidday/battleship/issues"
+  },
+  "homepage": "https://github.com/vvidday/battleship#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.14.7",
+    "css-loader": "^5.2.6",
+    "jest": "^27.0.6",
+    "style-loader": "^3.0.0",
+    "webpack": "^5.42.1",
+    "webpack-cli": "^4.7.2"
+  }
+}

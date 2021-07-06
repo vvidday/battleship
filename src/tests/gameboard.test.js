@@ -1,6 +1,6 @@
 import { expect, test } from "@jest/globals";
-import { gameboard } from "./gameboard";
-import { ship } from "./ship";
+import { gameboard } from "../gameboard";
+import { ship } from "../ship";
 
 const gb = gameboard();
 

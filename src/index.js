@@ -1,5 +1,6 @@
-function sum(a, b){
-    return a+b;
-}
+import './style.css';
+import { init } from "./domhandler";
+import { gameloop } from "./gameloop";
 
-export {sum};
+init();
+//gameloop.startGame();

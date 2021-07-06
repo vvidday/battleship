@@ -68,22 +68,26 @@ const gameboard = () =>{
     function receiveAttack(x, y){
         if((x < 0 || x > 9)||(y<0 || y > 9)) return false;
         if(state[x][y] === 0){
-            state[x][y] = true;
+            state[x][y] = 1;
             //HANDLE UPDATE DOM TO REFLECT MISS
-            return false;
+            return "miss";
         }
         else if (state[x][y] === 1){
-            return false;
+            return "repeat";
         }
         else{
             let index = ships.get(state[x][y]);
             let x_coord = Math.floor(index / 10);
             let y_coord = index % 10;
             if(x_coord === x){
-                return state[x][y].hit(y-y_coord);
+                let result = state[x][y].hit(y-y_coord);
+                if(result) return "hit";
+                else return "repeat";
             }
             else if(y_coord === y){
-                return state[x][y].hit(x-x_coord);
+                let result = state[x][y].hit(x-x_coord);
+                if(result) return "hit";
+                else return "repeat";
             }
         }
     }

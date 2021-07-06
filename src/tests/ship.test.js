@@ -1,6 +1,6 @@
 const { test, expect, beforeAll } = require('@jest/globals');
-import { sum } from './index';
-import { ship } from './ship';
+import { sum } from '../index';
+import { ship } from '../ship';
 
 
 const length = 5;
